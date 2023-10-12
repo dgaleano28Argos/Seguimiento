@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Excepciones</title>
+        <!--Referencias estilos -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+            integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.tailwindcss.min.css" />
+        <link href="style.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+        <!--Boostrap-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="loadingio-spinner-eclipse-touclqgeim loader" id="loader">
+        <div class="">
+            <img src="Diseño sin título.gif" class="img_loader">
+            <div></div>
+        </div>
+    </div>
+        
+
+    <!-- Tabla -->
+    <div class="contenedor container my-4">
+       <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <table id="tableDevice" class="" style="width: 100%;" >
+                    <thead>
+                        <tr>
+                            <th>Device Id</th>
+                            <th>Placa</th>
+                            <th>Fecha</th>
+                            <th id="orderfech">Fecha</th>
+                            <th>Latitud</th>
+                            <th>Longitud</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablebody_device"></tbody>
+                </table>
+            </div>
+       </div>
+    </div>
+
+    <div class="modal fade" id="miModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true" aria-labelledby="modalTitle" >
+        
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="content_modal-header">
+                    <div class="modal_header-title">
+                        <h3 id="placa_register"></h3>
+                    </div>
+                    <div class="modal_header-close">
+                        <button type="button" id="close" class="  btn-closed btn-close" data-bs-dismiss="modal" aria-label="close"><i class="fa-solid fa-x"></i></button>
+                    </div>
+                </div>
+                <div class="content_modal-body">
+                    <div class="content_exep">
+                        <div class="modal-body-exception">
+                            <div class="exception-card">
+                                <div class="exception-card_icon">
+                                    <i class="fa-solid fa-hashtag"></i>
+                                </div>
+                                <div class="exception-card_content">
+                                    <h6 class="card_content-info" id="number_exp"> </h6>
+                                    <p class="card_content-title">Excepciones</p>
+                                </div>
+                            </div>
+                            <div class="exception-card">
+                                <div class="exception-card_icon">
+                                    <i class="fa-regular fa-clock"></i>
+                                </div>
+                                <div class="exception-card_content">
+                                    <h6 class="card_content-info" id="time_exp"></h6>
+                                    <p class="card_content-title">Total Horas</p>
+                                </div>
+                            </div>
+                            <div class="exception-card">
+                                <div class="exception-card_icon">
+                                    <i class="fa-solid fa-road"></i>
+                                </div>
+                                <div class="exception-card_content">
+                                    <h6 class="card_content-info" id="kilometer_exp"></h6>
+                                    <p class="card_content-title">Kilometros</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-body-map">
+                            <div class="modal-body-map-conten" id="card_content">
+                                <div class="body-map-card">
+                                    <div class="map-card_icon">
+                                        <i class="fa-regular fa-circle"></i>
+                                        <div class="v-line">
+                                            <div class="v-line_l">
+                                            </div>
+                                        </div>
+                                        <i class="fa-solid fa-circle"></i>
+                                    </div>
+                                    <div class="map-card_content">
+                                      <div class="map-card-content-fini">
+                                        <p>03/10/2023 10:00:00</p>
+                                      </div>
+                                      <div class="map-card-content-info">
+                                       
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    <div class="col-md-4 content-info_tittle">
+                                                        <p>Distancia:</p>
+                                                        <p>Duracion:</p>
+                                                        <p>Regla:</p>
+                                                        <p>Cordenadas:</p>
+                                                        <p>Velocidad:</p>
+                                                        <p>Diagnostico:</p>
+                                                    </div>
+                                                    <div class="col-md-8 content-info_subti">
+                                                        <p>01.00 k</p>
+                                                        <p>02:00:00</p>
+                                                        <p>4.99999999 -76-0000000</p>
+                                                        <p>0</p>
+                                                        <p>esta es una regla</p>
+                                                        <p>esto es un diagnostico</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        
+                                      </div>
+                                      <div class="map-card-content-ffin">
+                                        <p>03/10/2023 10:00:00</p>
+                                      </div>
+                                      
+                                    </div>
+                                    
+                                </div>
+    
+                                
+                            </div>
+                            
+                        </div>
+                       
+                    </div>
+                    <div class="content_view-map" >
+                        <div class="map" id="map">
+
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+                
+         </div>
+       
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js" ></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js" ></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.tailwindcss.min.js" ></script>
+    <script src="https://cdn.tailwindcss.com/3.3.3" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.4/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.4/locale/es.js"></script>
+    <script src="https://cdn.datatables.net/plug-ins/1.10.15/sorting/datetime-moment.js"></script>
+    <script type="text/javascript" src="api.js"></script>
+    <script type="text/javascript" src="ObtenerDatos.js"></script>
+    <script type="text/javascript" src="ventanaModal.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+
+    
+</body>
+</html>
